@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'PHP runtime for OpenJS Architect apps
+
+  '
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: arc-php
+    Description: PHP runtime for OpenJS Architect apps
+    Author: Martin Hicks
+    SpdxLicenseId: Apache-2.0
+    LicenseUrl: s3://php-arc-layer/b1d794cfa907ac3c86cbe2d461866e1d
+    ReadmeUrl: s3://php-arc-layer/4abd1fdaa0af212037dbcedc6529186d
+    Labels:
+    - custom
+    - php
+    - lambda
+    - runtime
+    - layer
+    HomePageUrl: https://github.com/hicksy/arc-php-layer
+    SemanticVersion: '0.2.0'
+    SourceCodeUrl: https://github.com/hicksy/arc-php-layer/releases/tag/0.2.0
+Resources:
+  PhpLambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: arc-php
+      ContentUri: s3://php-arc-layer/86e1a42383b3f445aa1e58e5ad7768da
+      Description: PHP runtime (arc-php@0.2.0)
+      LicenseInfo: Apache-2.0
+      RetentionPolicy: Retain
+Outputs:
+  PhpRuntimeArn:
+    Value:
+      Ref: PhpLambdaLayer
